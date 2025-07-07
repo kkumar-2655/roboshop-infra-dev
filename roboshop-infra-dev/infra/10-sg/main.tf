@@ -153,13 +153,23 @@ resource "aws_security_group_rule" "backend_alb_vpn" {
   security_group_id = module.backend_alb.sg_id
 }
 
-/* resource "aws_security_group_rule" "mongodb_vpn_ssh" {
+resource "aws_security_group_rule" "mongodb_vpn_ssh" {
   count = length(var.mongodb_ports_vpn)
   type              = "ingress"
   from_port         = var.mongodb_ports_vpn[count.index]
   to_port           = var.mongodb_ports_vpn[count.index]
   protocol          = "tcp"
   source_security_group_id = module.vpn.sg_id
+  security_group_id = module.mongodb.sg_id
+}
+
+resource "aws_security_group_rule" "mongodb_bastion_ssh" {
+  count = length(var.mongodb_ports_vpn)
+  type              = "ingress"
+  from_port         = var.mongodb_ports_vpn[count.index]
+  to_port           = var.mongodb_ports_vpn[count.index]
+  protocol          = "tcp"
+  source_security_group_id = module.bastion.sg_id
   security_group_id = module.mongodb.sg_id
 }
 
@@ -173,6 +183,16 @@ resource "aws_security_group_rule" "redis_vpn_ssh" {
   security_group_id = module.redis.sg_id
 }
 
+resource "aws_security_group_rule" "redis_bastion_ssh" {
+  count = length(var.redis_ports_vpn)
+  type              = "ingress"
+  from_port         = var.redis_ports_vpn[count.index]
+  to_port           = var.redis_ports_vpn[count.index]
+  protocol          = "tcp"
+  source_security_group_id = module.bastion.sg_id
+  security_group_id = module.redis.sg_id
+}
+
 resource "aws_security_group_rule" "mysql_vpn_ssh" {
   count = length(var.mysql_ports_vpn)
   type              = "ingress"
@@ -180,6 +200,16 @@ resource "aws_security_group_rule" "mysql_vpn_ssh" {
   to_port           = var.mysql_ports_vpn[count.index]
   protocol          = "tcp"
   source_security_group_id = module.vpn.sg_id
+  security_group_id = module.mysql.sg_id
+}
+
+resource "aws_security_group_rule" "mysql_bastion_ssh" {
+  count = length(var.mysql_ports_vpn)
+  type              = "ingress"
+  from_port         = var.mysql_ports_vpn[count.index]
+  to_port           = var.mysql_ports_vpn[count.index]
+  protocol          = "tcp"
+  source_security_group_id = module.bastion.sg_id
   security_group_id = module.mysql.sg_id
 }
 
@@ -192,4 +222,14 @@ resource "aws_security_group_rule" "rabbitmq_vpn_ssh" {
   protocol          = "tcp"
   source_security_group_id = module.vpn.sg_id
   security_group_id = module.rabbitmq.sg_id
-} */
+}
+
+resource "aws_security_group_rule" "rabbitmq_bastion_ssh" {
+  count = length(var.rabbitmq_ports_vpn)
+  type              = "ingress"
+  from_port         = var.rabbitmq_ports_vpn[count.index]
+  to_port           = var.rabbitmq_ports_vpn[count.index]
+  protocol          = "tcp"
+  source_security_group_id = module.bastion.sg_id
+  security_group_id = module.rabbitmq.sg_id
+}

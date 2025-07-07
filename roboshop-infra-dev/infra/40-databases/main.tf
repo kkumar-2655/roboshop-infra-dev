@@ -30,11 +30,20 @@ resource "terraform_data" "mongodb" {
   }
 
   provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/bootstrap.sh",
-      "sudo sh /tmp/bootstrap.sh mongodb"
-    ]
-  }
+  inline = [
+    # Enable EPEL and install ansible-core on RHEL 9
+    "sudo dnf install -y epel-release",
+    "sudo dnf install -y ansible-core",
+    
+    # Print ansible version to confirm it's installed
+    "ansible --version",
+    
+    # Fix script line endings and execute
+    "sed -i 's/\\r//' /tmp/bootstrap.sh",
+    "chmod +x /tmp/bootstrap.sh",
+    "sudo sh /tmp/bootstrap.sh mongodb"
+  ]
+}
 }
 
 resource "aws_instance" "redis" {
@@ -69,11 +78,20 @@ resource "terraform_data" "redis" {
   }
 
   provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/bootstrap.sh",
-      "sudo sh /tmp/bootstrap.sh redis"
-    ]
-  }
+  inline = [
+    # Enable EPEL and install ansible-core on RHEL 9
+    "sudo dnf install -y epel-release",
+    "sudo dnf install -y ansible-core",
+    
+    # Print ansible version to confirm it's installed
+    "ansible --version",
+    
+    # Fix script line endings and execute
+    "sed -i 's/\\r//' /tmp/bootstrap.sh",
+    "chmod +x /tmp/bootstrap.sh",
+    "sudo sh /tmp/bootstrap.sh redis"
+  ]
+}
 }
 
 resource "aws_instance" "mysql" {
@@ -81,6 +99,7 @@ resource "aws_instance" "mysql" {
   instance_type = "t3.micro"
   vpc_security_group_ids = [local.mysql_sg_id]
   subnet_id = local.database_subnet_id
+  iam_instance_profile = "RoleToFetchSSMParams" # Ensure this role is created in the IAM module
 
   tags = merge(
     local.common_tags,
@@ -108,11 +127,20 @@ resource "terraform_data" "mysql" {
   }
 
   provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/bootstrap.sh",
-      "sudo sh /tmp/bootstrap.sh mysql"
-    ]
-  }
+  inline = [
+    # Enable EPEL and install ansible-core on RHEL 9
+    "sudo dnf install -y epel-release",
+    "sudo dnf install -y ansible-core",
+    
+    # Print ansible version to confirm it's installed
+    "ansible --version",
+    
+    # Fix script line endings and execute
+    "sed -i 's/\\r//' /tmp/bootstrap.sh",
+    "chmod +x /tmp/bootstrap.sh",
+    "sudo sh /tmp/bootstrap.sh mysql"
+  ]
+}
 }
 
 resource "aws_instance" "rabbitmq" {
@@ -147,9 +175,18 @@ resource "terraform_data" "rabbitmq" {
   }
 
   provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/bootstrap.sh",
-      "sudo sh /tmp/bootstrap.sh rabbitmq"
-    ]
-  }
+  inline = [
+    # Enable EPEL and install ansible-core on RHEL 9
+    "sudo dnf install -y epel-release",
+    "sudo dnf install -y ansible-core",
+    
+    # Print ansible version to confirm it's installed
+    "ansible --version",
+    
+    # Fix script line endings and execute
+    "sed -i 's/\\r//' /tmp/bootstrap.sh",
+    "chmod +x /tmp/bootstrap.sh",
+    "sudo sh /tmp/bootstrap.sh rabbitmq"
+  ]
+ }
 }

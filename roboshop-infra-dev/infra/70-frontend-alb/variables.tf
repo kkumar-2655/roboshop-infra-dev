@@ -5,10 +5,11 @@ variable "project" {
 variable "environment" {
     default = "dev"
 }
+
 variable "zone_id" {
-    default = "Z02622157IVZUWOPNGMV"
+    default = "Z032558618100M4EJX8X4"
 }
 
 variable "zone_name" {
-    default = "daws84skiran.store"
+    default = "daws84s.site"
 }
