@@ -1,6 +1,6 @@
 module "frontend" {
     #source = "../../terraform-aws-securitygroup"
-    source = "git::https://github.com/daws-84s/terraform-aws-securitygroup.git?ref=main"
+    source = "git::https://github.com/kkumar-2655/terraform-aws-sg.git?ref=main"
     project = var.project
     environment = var.environment
 
@@ -11,7 +11,7 @@ module "frontend" {
 
 module "bastion" {
     #source = "../../terraform-aws-securitygroup"
-    source = "git::https://github.com/daws-84s/terraform-aws-securitygroup.git?ref=main"
+    source = "git::https://github.com/kkumar-2655/terraform-aws-sg.git?ref=main"
     project = var.project
     environment = var.environment
 
@@ -22,7 +22,7 @@ module "bastion" {
 
 module "backend_alb" {
     #source = "../../terraform-aws-securitygroup"
-    source = "git::https://github.com/daws-84s/terraform-aws-securitygroup.git?ref=main"
+    source = "git::https://github.com/kkumar-2655/terraform-aws-sg.git?ref=main"
     project = var.project
     environment = var.environment
 
@@ -33,7 +33,7 @@ module "backend_alb" {
 
 module "vpn" {
     #source = "../../terraform-aws-securitygroup"
-    source = "git::https://github.com/daws-84s/terraform-aws-securitygroup.git?ref=main"
+    source = "git::https://github.com/kkumar-2655/terraform-aws-sg.git?ref=main"
     project = var.project
     environment = var.environment
 
@@ -44,7 +44,7 @@ module "vpn" {
 
 module "mongodb" {
     #source = "../../terraform-aws-securitygroup"
-    source = "git::https://github.com/daws-84s/terraform-aws-securitygroup.git?ref=main"
+    source = "git::https://github.com/kkumar-2655/terraform-aws-sg.git?ref=main"
     project = var.project
     environment = var.environment
 
@@ -55,7 +55,7 @@ module "mongodb" {
 
 module "redis" {
     #source = "../../terraform-aws-securitygroup"
-    source = "git::https://github.com/daws-84s/terraform-aws-securitygroup.git?ref=main"
+    source = "git::https://github.com/kkumar-2655/terraform-aws-sg.git?ref=main"
     project = var.project
     environment = var.environment
 
@@ -66,7 +66,7 @@ module "redis" {
 
 module "mysql" {
     #source = "../../terraform-aws-securitygroup"
-    source = "git::https://github.com/daws-84s/terraform-aws-securitygroup.git?ref=main"
+    source = "git::https://github.com/kkumar-2655/terraform-aws-sg.git?ref=main"
     project = var.project
     environment = var.environment
 
@@ -77,7 +77,7 @@ module "mysql" {
 
 module "rabbitmq" {
     #source = "../../terraform-aws-securitygroup"
-    source = "git::https://github.com/daws-84s/terraform-aws-securitygroup.git?ref=main"
+    source = "git::https://github.com/kkumar-2655/terraform-aws-sg.git?ref=main"
     project = var.project
     environment = var.environment
 
