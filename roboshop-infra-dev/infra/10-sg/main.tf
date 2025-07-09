@@ -8,6 +8,16 @@ module "frontend" {
     sg_description = var.frontend_sg_description
     vpc_id = local.vpc_id
 }
+module "frontend_alb" {
+    #source = "../../terraform-aws-securitygroup"
+    source = "git::https://github.com/kkumar-2655/terraform-aws-sg.git?ref=main"
+    project = var.project
+    environment = var.environment
+
+    sg_name = "frontend-alb"
+    sg_description = "for frontend alb"
+    vpc_id = local.vpc_id
+}
 
 module "bastion" {
     #source = "../../terraform-aws-securitygroup"
