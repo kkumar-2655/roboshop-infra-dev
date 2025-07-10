@@ -1,2 +1,0 @@
-REDIS_HOST: redis-{{ env }}.daws84skiran.store
-MONGODB_HOST: mongodb-{{ env }}.daws84skiran.store

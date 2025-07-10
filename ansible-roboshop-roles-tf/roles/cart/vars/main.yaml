@@ -1,2 +1,0 @@
-CATALOGUE_HOST: catalogue.backend-{{ env }}.daws84skiran.store
-REDIS_HOST: redis-{{ env }}.daws84skiran.store
